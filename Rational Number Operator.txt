@@ -1,0 +1,80 @@
+#include<iostream>
+
+using std::cout;
+
+using std::endl;
+
+using std::ostream;
+
+struct Rational_number {
+
+    Rational_number(int n=0,int d=1) : num(n), den(d) {}
+    const Rational_number operator+(const Rational_number &) const;
+    const Rational_number operator-(const Rational_number &) const;
+    const Rational_number operator*(const Rational_number &) const;
+    const Rational_number operator/(const Rational_number &) const;
+    const Rational_number operator~(void) const;
+    friend ostream &operator<<(ostream &, const Rational_number &);
+
+private:
+    int num;
+    int den;
+};
+
+int main(void) {
+
+    Rational_number a(3,2);
+    Rational_number b(2,1);
+    cout << a << " + " << b << " = " << a + b << endl;
+    cout << a << " - " << b << " = " << a - b << endl;
+    cout << a << " * " << b << " = " << a * b << endl;
+    cout << a << " / " << b << " = " << a / b << endl;
+
+    return 0;
+}
+
+
+const Rational_number Rational_number::operator+(const Rational_number &o) const {
+
+    return Rational_number(num*o.den+den*o.num, den*o.den);
+}
+
+
+const Rational_number Rational_number::operator-(const Rational_number &o) const {
+
+    return Rational_number(num*o.den-den*o.num, den*o.den);
+}
+
+
+const Rational_number Rational_number::operator*(const Rational_number &o) const {
+
+    return Rational_number(num*o.num, den*o.den);
+}
+
+
+const Rational_number Rational_number::operator/(const Rational_number &o) const {
+
+return Rational_number(num*o.den,den*o.num);
+}
+
+
+const Rational_number Rational_number::operator~(void) const {
+
+    return Rational_number(-num,den);
+}
+
+
+ostream &operator<<(ostream &out, const Rational_number &o) {
+int min = o.num > o.den ? o.num:o.den;
+int cf = 1;
+for(int i=min; i>=1; i--)
+{
+
+if(o.num%i == 0 && o.den%i==0) { cf = i; break; }
+
+}
+
+   out << "(" << (o.num/cf) << " / "<< (o.den/cf) << ")";
+
+    return out;
+}

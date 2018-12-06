@@ -1,0 +1,142 @@
+#include <iostream>
+#include <math.h>
+
+using namespace std;
+
+void Seive(int * arr, int n)
+
+{
+    for (int p = 2; p * p <= n; p++)
+
+    {
+        if (arr[p] == 0)
+
+        {
+            // update all multiples of p
+
+            for (int i = p * 2; i <= n; i += p)
+                arr[i] = 1;
+        }
+    }
+
+    for (int p = 2; p <= n; p++)
+        if (!arr[p])
+
+    cout << p << "";
+}
+
+void goldbach(int arr[], int num)
+{
+    int testnumber; // this is the number to be tested
+
+    int prime1;
+    int prime2;
+    int is_prime1;
+    int is_prime2;
+    int counter;
+    int i;
+    int solution1;
+    int solution2;
+    Seive(arr, num);
+
+    cout << "The purpose of this program is to prove Goldbach's conjecture" << endl;
+    cout << "Please input a number to be tested and press ENTER: ";
+    cin >> testnumber;
+
+
+    prime1 = 1;
+    prime2 = 1;
+
+    for (counter = 1; counter <= testnumber; counter++)
+        prime1 = prime1 + 1;
+
+    is_prime1 = true;
+
+    if(prime1!=1 && arr[prime1]==0)
+        is_prime1 = true;
+
+    else
+        is_prime1 = false;
+
+    if (is_prime1 == true)
+    {
+        prime2 = testnumber - prime1;
+
+        is_prime2 = true;
+
+    if(prime2!=1 && arr[prime2]==0)
+        is_prime2 = true;
+
+    else
+        is_prime2 = false;
+    }
+
+    if(is_prime1)
+    {
+        //if prim1 is prime
+
+        if(is_prime2)
+        {
+            //and if prime2 is prime
+
+            if(prime1 + prime2 == testnumber) // and finally if prime1 + prime2 = the testnumber
+
+                if(prime2 >= 2)
+            {
+                solution1 = prime1; // save the solution for output
+                solution2 = prime2;
+            }
+        }
+    }
+
+
+cout << "Goldbach's conjecture is proven again: " << solution1 << "+" << solution2 << "=" << testnumber << endl;
+
+
+}
+
+
+int main()
+{
+    int arr[100] = {0};
+    Seive(arr, 100);
+    goldbach(arr, 100);
+
+    return 0;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
