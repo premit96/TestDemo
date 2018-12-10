@@ -1,0 +1,62 @@
+<html>
+
+	<head>
+		
+			<title>ChatApp </title>
+			<link href="bootstrap.css" rel="stylsheet" />
+			<link href="style.css" rel="stylesheet" />
+			
+			
+			
+			<!-- latest jQuery direct from google's CDN -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		
+			<!-- form validation plugin -->
+        <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+		
+		<script src="global.js" />
+		
+		
+		<script type="text/javascript">
+            $(document).ready(function() {
+			
+			$('#viewIndex').load("getdata.php");
+				$("#formvalidate").validate({
+				rules: {
+                  username: {required: true},
+                  message: {required: true}
+                }
+              });
+            });
+        </script>
+		
+		
+		
+		
+	</head>
+	
+	
+	<body>
+		<div class="container">
+		
+		
+		<div class="form-frame">
+		<h1>Welcome to ChatApp!</h1>
+		<div id="viewIndex" class="scroll-pane"></div>
+		
+		
+		
+		<form id="formvalidate" method='post'>
+		<input type="text" id="myUsername" class="form-control" name="username" placeholder=Name" value="" maxlength="15" />
+		<input type="text" id="myMessage" class="form-control" name="message" placeholder="Message" value="' maxlength="100" />
+		<button id="chatSubmit" clas="btn btn-1g btn-primary btn-block" type="submit">Submit!</button>
+		<button class="btn btn-1g btn-primary btn-block" type="reset">Clear!</button>
+		</form>
+		</div>
+	
+	
+	</body>
+	
+</html>
+	
+	
